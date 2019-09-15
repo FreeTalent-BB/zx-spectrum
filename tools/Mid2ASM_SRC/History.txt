@@ -1,0 +1,291 @@
+:::::::::::::::::::::::::::::::::  Compiled badly by Karl McNeil 19/August/2010
+::: Gasman's Midi2Beeper Tool :::  KgMcNeil@Yahoo.Com
+::: Total ReWrite: Midi2ASM!  :::
+:::::::::::::::::::::::::::::::::  Version 3.2: Windows GUI: 
+
+MAIN FEATURES:
+- Now outputs Assembly or BASIC listings - Thats right, BASIC output is BACK!!!
+- Now includes automatic pitch correction for notes outside the range of ZX playing!
+
+
+COMMAND LINE TOOL: midi2beep2.exe
+() Added [-A/-B] parameter switch to Assembly or BASIC output (yes, BASIC output is BACK!!!)
+() Added [-H/-?/-V/-HELP] parameter to show and version and helpful usage info.
+() Added [-K:(n)] keyshift parameter to force keyshift offset.
+() Zero keyshift parameter (default) activates Autocorrection of any notes beyond ZX pitch range!
+   To keep the notes in pitch range, the whole piece is shifted up or down key.
+   If that is not possible, then the individual notes themselves will be fixed, by moving them up or down the octives.
+() Commented BugReport info now tagged on the the end of the output.
+() Added [-O:(n)] ORIgin parameter to determine where the assembly is to be compiled
+   Default is set to 24000 for manual compiling; only the GUI compiles now to 23766 (for bin2rem component)
+() Added [-L:(n)] LINE parameter to determine where the BASIC DATA statements are to start from.
+() Added [-E] END parameter to End routine when song finished playing (Default is to Loop the playing till key pressed)
+() Added [-X] eXtreme Compact Format: heXifys if Assembly, uses REM data line if Basic (eXperimental!) 
+
+:: ALPHA/Experimental Features:
+() GUI: Compact Mode option added - turns Assembly to HEX & BASIC into REM data format.
+() GUI: Midi Simplification option added - (REDUNDANT FOR NOW)
+==================================================================================
+:::::::::::::::::::::::::::::::::  Compiled badly by Karl McNeil 17/June/2010
+::: Gasman's Midi2Beeper Tool :::  KgMcNeil@Yahoo.Com
+::: Total ReWrite: Midi2ASM!  :::
+:::::::::::::::::::::::::::::::::  Version 3.0: Windows GUI: 
+
+MAIN FEATURES:
+- Can alter Note Duration, for pieces with fast little notes, for better timing accuracy.
+- Can alter and set Tempo live, during Beeper preview.
+
+() BugFIX: Compile now stops midi preview playing to avoid overlapping with Beeper.
+() BugFIX: Application can be exited now during beeper preview playing.
+() Record/Compile Button now changes color to reflect status of use.
+() Cosmetic: Binary files (.bin) kept out of sight, as of limited use to the user
+
+IF DEFAULT SETTINGS MENU UNTICKED:
+() Added Slider to Adjust Duration of Basic note units (Default Lengths were multiples of 1/51)
+() Added Slider to Adjust Tempo real time while playing Preview Beeper
+
+COMMAND LINE TOOL: midi2beep2.exe
+() Added -M: parameter for adjusting the fractional base note duration and optional tempo offset
+   Defaults are MiniNote=51, Tempo Offset=0: eg: -M:51(0)
+   MiniNote duration of 1/30 with Tempo half speed would be -M:30(-15)
+
+
+==================================================================================
+
+:::::::::::::::::::::::::::::::::  Compiled badly by Karl McNeil 9/June/2010
+::: Gasman's Midi2Beeper Tool :::  KgMcNeil@Yahoo.Com
+::: Total ReWrite: Midi2ASM!  :::
+:::::::::::::::::::::::::::::::::  Version 2.3: Windows GUI: Now with Beeper Play Preview
+
+() Assembly slightly optimized for speed via precalculating some of the math.
+() Assembly now allows for easy Tempo changes (May allow editing in GUI in future version)
+() Incorporated Beeper Player for Preview playing after File Compiled
+() BugFix: Stop added to Menu- Menu now reflects whether music is playing or not
+
+These changes above have been made in advance of future plans for adding live tempo control and other fine tuning.  Until then, this is where Im up to...
+
+Enjoy,
+
+Karl McNeil
+KgMcNeil@Yahoo.Com
+
+==================================================================================
+
+:::::::::::::::::::::::::::::::::  Compiled badly by Karl McNeil 1/June/2010
+::: Gasman's Midi2Beeper Tool :::  KgMcNeil@Yahoo.Com
+::: Total ReWrite: Midi2ASM!  :::
+:::::::::::::::::::::::::::::::::  Version 2.2: Windows: Now with GUI interface.
+
+The following changes have been made:
+
+() GUI front end included
+() Start Address lowered to default 23766 for Bin2Rem utility
+() Program will now compile the outputed ASM to spit out ready to run .TAP files
+() Minor Assembler optimization (shortening a string of ops) (Thanks Ccowley!)
+() Minor Assembler optimization (call swapped for jp on Beep entry)(Thanks Dr Beep!)
+() Minor Assembler optimization (Floating math calc abbreviated)(Thanks Dr Beep!)
+() Increased the compatibility of the outputed ASM file (Thanks Ccowley!)
+
+The Ruby script itself is unchanged, the assembly routine has been optimized slightly to save space and speed.  A GUI frontend has been bolted on using AutoIT, which binds the original script and pasmo (compiler) together.
+
+Sadly, Im not familiar enough yet with Gosu in Ruby to make the GUI front with that, but may attempt it in the future for cross-platform compatibility.  
+
+For now, Enjoy
+
+Karl McNeil
+KgMcNeil@Yahoo.Com
+
+==================================================================================
+
+:::::::::::::::::::::::::::::::::  Compiled badly by Karl McNeil 27/May/2010
+::: Gasman's Midi2Beeper Tool :::  KgMcNeil@Yahoo.Com
+::: Total ReWrite: Midi2ASM!  :::
+:::::::::::::::::::::::::::::::::  Version 2.1: Bug Fix - For durations longer than 5 Sec.
+
+Minor bug fix to deal with the highly unlikely event of encountering notes longer than 5 seconds...
+(If such a thing encountered, the note will be split into repeated notes, the total of which will equal the correct duration)...
+
+Other wise, program is exactly as below...
+
+Enjoy
+
+Karl McNeil
+KgMcNeil@Yahoo.Com
+
+==================================================================================
+
+:::::::::::::::::::::::::::::::::  Compiled badly by Karl McNeil 25/May/2010
+::: Gasman's Midi2Beeper Tool :::  KgMcNeil@Yahoo.Com
+::: Total ReWrite: Midi2ASM!  :::
+:::::::::::::::::::::::::::::::::  Version 2.0: TOTAL REWRITE!!!!
+
+Here it is!!... The new and improved Midi2Beep, version 2... Now renamed MIDI2ASM!!!!
+
+This does much the same job as the previous versions (Use the same way).  However, unlike the previous versions, this one outputs Assembly NOT BASIC!!!!
+
+Much as I love the original work, those darn BEEP commands just take up too much room!!!... 
+
+This version saves considerable space by:
+
+- Avoiding BASIC listing altogether
+- Avoiding repetitious commands (yes, thats right, we're going to use DATA and LOOPS!!!)
+- Turning the BEEP data into single byte integers (no more 0.blahblahblahblah floating point numbers!!!!)
+
+The sound output is still pretty much the same...
+
+Those counting to the beat in microseconds (you know who you are!!!), will no doubt notice a slight change in the duration of notes, but most mortals won't...
+
+The Assembly will compile in Pasmo, BASin, ZX Spin and EmuZWin with no modification.
+
+The song will play once, then exit, or exit if any key is pressed.
+
+So how does it work?... 
+
+(1) BEEP data is turned into single byte integers:
+    - Pitch data has 60 added to it to avoid negative numbers.
+    - Duration is divided into units of 0.019607843 
+	> (where the hell did that come from?!?!... Actually, thats 5/255)
+	> (That means your note range is now reduced to between 0-5 seconds)
+
+(2) Data is spit out as single bytes, two bytes per note
+(3) A simple loop reads the data, turns it back in BEEP data, then feeds it to the Roms BEEP routine...
+
+Thats essentially it...
+
+It saves space, and now leaves you with enough room left over to get on with the rest of your BASIC program...
+
+Enjoy!!!!
+
+Karl
+KgMcNeil@Yahoo.Com
+
+PS: If anyone can improve on this, then please feel free to do so - I make no excuses for my terrible terrible programming!!!
+==================================================================================
+
+:::::::::::::::::::::::::::::::::  Compiled badly by Karl McNeil 27/Oct/2009
+::: Gasman's Midi2Beeper Tool :::  KgMcNeil@Yahoo.Com
+::: COMPILED FOR WINDOWS/DOS! :::
+:::::::::::::::::::::::::::::::::  Version 0.2
+
+This is a compiled version of Gasman's Midi to Speccy BEEPER translator.
+This is version two of his work.
+
+IMPROVEMENTS MADE SINCE FIRST EDITION:
+
+- Annoying compile error which originally restricted input filename to "input.mid" now removed
+- Usage thus slightly more expanded now (more like it was originally intended)
+
+EXAMPLES OF USING THE TOOL:
+
+((1)) midibeep.exe
+
+This will look for the first .mid/.midi file it can find and output its Beeper translation to the screen.
+NB: Not terribly useful if you have multiple midi files in the same directory... but potentially useful if you only have one...
+
+((2)) midibeep.exe > Output.txt
+
+This will look for the first .mid/.midi file it can find and output its Beeper translation to the file named "Output.txt"
+
+((3)) midibeep.exe input.mid > Output.txt
+
+This will look for the file named "input.mid" and output its Beeper translation of it to the file named "Output.txt"
+
+For those of you interested in compiling the source yourself, I did the following:
+
+[a] Downloaded & Installed ruby186-27_rc2.exe
+[b] Downloaded and installed the following GEM files via the console commands:
+
+    gem install midilib-1.2.1.gem
+    gem install ocra-1.1.2.gem
+
+[c] Within my own editor (ConTEXT, actually), I made following changes to Gasman's midibeep.rb script:
+
+- At the start of the script, after the "require" statements (line 24), inserted:
+
+	FNAME = if ARGV[0] then
+		ARGV[0]
+		else
+		Dir["*.{mid,midi}"][0]
+		end
+
+- At line 76, the origial referrence to ARGV[0] has been replaced by the variable FNAME:
+
+	File.open(FNAME,'rb'){...etc..etc
+
+[d] Used following OCRA command to compile & simultaneously test the modified script:
+
+ocra --icon N:\GRAPHI~1\GRAPHI~1\Icon\ZxThemed\Z80.ico midibeep.rb darkeyes.mid > output2.txt
+
+[e] Thats it!...
+
+Please read the original readme notes and Gasman's notes printed below:
+==================================================================================
+
+:::::::::::::::::::::::::::::::::  Compiled badly by Karl McNeil 26/Oct/2009
+::: Gasman's Midi2Beeper Tool :::  KgMcNeil@Yahoo.Com
+::: COMPILED FOR WINDOWS/DOS! :::
+:::::::::::::::::::::::::::::::::  Please send all bug reports... elsewhere!!!!
+
+..Those of you who reckon "Ruby" is some sort of shiny stone (that was me until this afternoon),
+and consider "source code" as something you mutter to the waiter
+when you want HP Brown stuff on your greasy chips, might be interested
+in this precompiled binary or Gasmans ace Midi to BASIC Beeper code tool...
+
+FOR THOSE WHO DO KNOW THEIR SHINY STONES FROM THEIR PROGRAMMING LINGOS:
+
+This was compiled via from the Ocra GEM library (after several failed attempts using other such scripts that shall thus remain unnamed - lest I utter some expletive while doing so).
+
+The original source code had to be modified (included), as the compiler would not allow me to turn ARGV[0] (used to reference the first parameter in the command line) into an explicit string if it remained null... To replace this then, an explicit string, pointing to "input.mid" was thus inserted prior compiling...
+
+The consequences of this are thus obvious to anyone who can follow the source code...
+
+THIS WILL EXPECT TO FIND "INPUT.MID" WHEN IT EXECUTES.
+
+EXAMPLES OF USAGE:
+
+1) midibeep.exe
+
+This will look for "input.mid", and, upon finding it, convert it to a series of equivalent BEEP commands.  It's output will be put to the screen, by default.
+
+2) midibeep.exe > Output.txt
+
+This will look for "input.mid", and, upon finding it, convert it to a series of 
+equivalent BEEP commands.  It's output will be streamed into a file ("Output.txt"
+in this case).
+
+THAT’S IT!!!!
+
+Obviously, if you wish to use the output, you'll need to paste it into something like
+BASin (for Windows), or use zmakebas for Linux, to put this into a TAP file for running.
+
+Please read Gasman's original Readme, printed below:
+=========================================================================================
+midibeep.rb: Convert a Standard MIDI (.mid) file into Spectrum BEEP statements
+http://github.com/gasman/midibeep/
+
+Installation / requirements
+---------------------------
+You will need Ruby, and midilib:
+    gem install midilib
+
+You probably also need something to translate BASIC text files into something
+that can be loaded into a Spectrum; I use zmakebas
+    http://www.svgalib.org/rus/zmakebas.html
+but for Windows, BASin probably works well:
+    http://www.worldofspectrum.org/forums/showthread.php?t=20950
+
+Usage
+-----
+    ruby midibeep.rb my_midi_file.mid
+will dump the BEEPs to standard output;
+    ruby midibeep.rb my_midi_file.mid > my_program.txt
+will send the output to somewhere more useful. Or, for command-line-fu fans:
+    ruby midibeep.rb my_midi_file.mid | 
+
+Limitations
+-----------
+- The algorithm for condensing down to one channel is pretty crude. Don't
+  expect good results if you feed it a full orchestral score.
+- The output format is a memory hog. Expect to get about 1500 lines into 48K.
+
+Matt Westcott <matt@west.co.tt> - http://matt.west.co.tt/

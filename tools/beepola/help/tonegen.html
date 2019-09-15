@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- #BeginTemplate "BeepolaHelp.dwt" -->
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<!-- #BeginEditable "doctitle" -->
+<title>Beepola 1bit Beeper Engines</title>
+<!-- #EndEditable -->
+<link href="BeepolaMain.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+
+.style1 {
+	font-size: small;
+}
+</style>
+</head>
+
+<body>
+<div id="container" style="width: 100%; float: none; overflow: auto;">
+<div class="IndexDiv">
+<h1 class="Heading">Beepola Help</h1>
+<p class="Heading">Contents</p>
+	<p class="IndexItem"><a href="intro.html">Introduction</a></p>
+	<p class="IndexItem"><a href="keyboard.html">Keyboard commands</a></p>
+	<p class="IndexItem"><a href="tonegen.html">Beeper Engines</a></p>
+	<ul class="IndexSubItem">
+		<li><a href="engine-sfx.html">Special FX (Fuzz Click)</a></li>
+		<li><a href="engine-tmb.html">The Music Box</a></li>
+		<li><a href="engine-msd.html">The Music Studio</a></li>
+		<li><a href="engine-p1d.html">Phaser1</a><br />
+&nbsp; <span class="style1"><a href="p1-instruments.html">Interesting 
+		Instruments</a></span></li>
+		<li><a href="engine-svg.html">Savage</a></li>
+		<li><a href="engine-rmb.html">ROMBeep</a></li>
+		<li><a href="engine-plp.html">Plip Plop</a></li>
+		<li><a href="engine-hby.html">Huby</a></li>
+		<li><a href="engine-qcn.html">QChan</a></li>
+		<li><a href="engine-tri.html">Tritone</a></li>
+	</ul>
+	<p class="IndexItem"><a href="compiling.html">Compiling Songs</a></p>
+	<p class="IndexItem"><a href="ripping.html">Ripping Songs</a></p>
+	<p class="IndexItem"><a href="bbsong-fileformat.html">*.bbsong file format</a></p>
+	<p class="IndexItem"><a href="credits.html">Credits</a></p>
+	<p class="IndexItem">&nbsp;</p>
+
+</div>
+<!-- #BeginEditable "body" -->
+<div align="left" class="BodyDiv">
+	<p class="Heading">Beeper Engines</p>
+	<p class="BodyText">Beepola supports the following beeper engines. Each has its own unique 
+	sound, and its own advantages and disadvantages.</p>
+
+	<p class="Heading"><a href="engine-sfx.html">Special FX Beeper Engine</a></p>
+
+	<ul class="IndexSubItem">		
+		<li>Supports note sustain settings<br />
+		</li>
+		<li>2 tone channels<br />
+		</li>
+		<li>1 percussion channel, with 4 percussion sounds.&nbsp;&nbsp;&nbsp; </li>
+	</ul>
+	<p class="Heading"><a href="engine-p1d.html">Phaser1 Beeper Engine</a></p>
+
+	<ul class="IndexSubItem">		
+		<li>Full 5 octaves for both tone channels<br />
+		</li>
+		<li>Channel 2 is a programmable phasing synthesiser, allowing up to 100 
+		unique instruments per song<br />
+		</li>
+		<li>1 percussion channel, with either 8 high-quality digitally sampled 
+		percussion sounds, or 9 synthesised drum sounds available</li>
+		<li>Has none of the detuning effects that are present in many other 
+		beeper engines.</li>
+	</ul>
+	
+	<p class="Heading"><a href="engine-tmb.html">The Music Box Beeper Engine</a></p>
+	<ul class="IndexSubItem">
+		<li>Small player routine (approx. 217 bytes, depending upon the features selected 
+	at compile time)</li>
+		<li>2 tone channels</li>
+		<li>Fixed note lengths, and the fact that it does not use an Interrupt Service 
+	Routine mean that this tone generator is well suited for producing 2 channel 
+	in-game music. The &quot;play next note&quot; routine call be called at regular 
+	intervals from within a main game loop, or from an IM2 interrupt routine, 
+	to achieve song playback while a game or other code is running.</li>
+		<li>Clean-sounding square wave tones.</li>
+	</ul>
+	<p class="Heading"><a href="engine-msd.html">The Music Studio Beeper Engine </a></p>
+	<ul class="IndexSubItem">
+		<li>Small player routine (approx. 214 bytes, depending upon the features selected 
+	at compile time)</li>
+		<li>2 channels, one of which may contain percussion</li>
+		<li>13 percussion sounds</li>
+		<li>Sawtooth-style synthesized tones.</li>
+		<li>Fixed note lengths, and the fact that it does not use an Interrupt Service 
+	Routine mean that this tone generator is well suited for producing 2 channel 
+	in-game music. The &quot;play next note&quot; routine call be called at regular 
+	intervals from within a main game loop, or from an IM2 interrupt routine, 
+	to achieve song playback while a game or other code is running.</li>
+	</ul>	
+	<p class="Heading"><a href="engine-svg.html">The Savage Beeper Engine </a></p>
+	<ul class="IndexSubItem">
+		<li>2 tone channels</li>
+		<li>1 percussion channel with 5 drum sounds</li>
+		<li>Ornaments (up to 31 unique ornaments per song)</li>
+		<li>Glissando effect (range of 255 possible values) for both channels</li>
+		<li>Skew and skew XOR effects to change the timbre of the sounds for 
+		both channels&nbsp;&nbsp;&nbsp; </li>
+		<li>FX effect to support a range of addition sound effects for each 
+		channel.</li>
+	</ul>	
+	
+	<p class="Heading"><a href="engine-rmb.html">The ROMBeep Engine </a></p>
+	<ul class="IndexSubItem">
+		<li>Uses the Spectrum BEEP ROM routine to generate pseudo 2 channel 
+		sound using argeggios.</li>
+		<li>Small player code.</li>
+		<li>Player routine can be run from contended memory. This is the only 
+		beeper engine supported by Beepola that will sound undistorted on a 16K 
+		Spectrum.</li>
+	</ul>
+	<p class="Heading"><a href="engine-plp.html">The Plip Plop Engine </a></p>
+	<ul class="IndexSubItem">
+		<li>Single tone channel of sawtooth-wave melody.</li>
+		<li>4 Drum sounds.</li>
+		<li>Configurable pitch bend rate up/down.</li>
+	</ul>
+	<p class="Heading"><a href="engine-hby.html">The Huby Engine</a></p>
+	<ul class="IndexSubItem">
+		<li>2 tone channels</li>
+		<li>1 percussion sound (replaces the note on Channel 1).</li>
+		<li>Manual note detuning capability.</li>
+		<li>Tiny replay routine (around 100 bytes) and very compact data format 
+		make this engine ideal for game music where memory space for music is&nbsp; 
+		limited.</li>
+	</ul>
+	<p class="Heading"><a href="engine-qcn.html">The QChan Engine</a></p>
+	<ul class="IndexSubItem">
+		<li>4 tone channels</li>
+		<li>1 percussion channel with 12 sounds.</li>
+		<li>Per-channel volume controls.</li>
+		<li>Per-pattern note sustain settings.</li>
+		<li>No significant tuning issues.</li>
+	</ul>
+	<p class="Heading"><a href="engine-tri.html">The Tritone Engine</a></p>
+	<ul class="IndexSubItem">
+		<li>3 tone channels</li>
+		<li>1 percussion channel with 24 sounds.</li>
+		<li>Manual note detuning capability.</li>
+		<li>Skew effects to change the timbre of individual notes.</li>
+		<li>Two player versions included:- one with a different volume level for 
+		each channel, and a second with equal volume levels.</li>
+	</ul>
+	<p>&nbsp;</p>
+	<p class="Heading">&nbsp;</p>
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+	
+</div>	
+<!-- #EndEditable -->
+</div>
+</body>
+
+<!-- #EndTemplate -->
+
+</html>

@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- #BeginTemplate "BeepolaHelp.dwt" -->
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<!-- #BeginEditable "doctitle" -->
+<title>Compiling Songs in Beepola</title>
+<!-- #EndEditable -->
+<link href="BeepolaMain.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+
+.style1 {
+	font-size: small;
+}
+</style>
+</head>
+
+<body>
+<div id="container" style="width: 100%; float: none; overflow: auto;">
+<div class="IndexDiv">
+<h1 class="Heading">Beepola Help</h1>
+<p class="Heading">Contents</p>
+	<p class="IndexItem"><a href="intro.html">Introduction</a></p>
+	<p class="IndexItem"><a href="keyboard.html">Keyboard commands</a></p>
+	<p class="IndexItem"><a href="tonegen.html">Beeper Engines</a></p>
+	<ul class="IndexSubItem">
+		<li><a href="engine-sfx.html">Special FX (Fuzz Click)</a></li>
+		<li><a href="engine-tmb.html">The Music Box</a></li>
+		<li><a href="engine-msd.html">The Music Studio</a></li>
+		<li><a href="engine-p1d.html">Phaser1</a><br />
+&nbsp; <span class="style1"><a href="p1-instruments.html">Interesting 
+		Instruments</a></span></li>
+		<li><a href="engine-svg.html">Savage</a></li>
+		<li><a href="engine-rmb.html">ROMBeep</a></li>
+		<li><a href="engine-plp.html">Plip Plop</a></li>
+		<li><a href="engine-hby.html">Huby</a></li>
+		<li><a href="engine-qcn.html">QChan</a></li>
+		<li><a href="engine-tri.html">Tritone</a></li>
+	</ul>
+	<p class="IndexItem"><a href="compiling.html">Compiling Songs</a></p>
+	<p class="IndexItem"><a href="ripping.html">Ripping Songs</a></p>
+	<p class="IndexItem"><a href="bbsong-fileformat.html">*.bbsong file format</a></p>
+	<p class="IndexItem"><a href="credits.html">Credits</a></p>
+	<p class="IndexItem">&nbsp;</p>
+
+</div>
+<!-- #BeginEditable "body" -->
+<div align="left" class="BodyDiv">
+	<p class="Heading">Compiling Songs</p>
+	<p class="BodyText">To compile a song for use on either a real or emulated 
+	ZX Spectrum, select &quot;Compile Song...&quot; from the Tools menu. The resulting 
+	dialog allows you to specify a number of options for the compiled song:-</p>
+	<p class="BodyText"><em>Compile to address: </em>This is location in the 
+	Spectrum&#39;s memory map to which song is compiled. This must be in the top 32K 
+	of memory due to issues with contended memory access in the Spectrum 
+	hardware. Therefore, values of between 32768 and 65535 are permitted.</p>
+	<p class="BodyText"><em>Border Colour: </em>The colour of the spectrum&#39;s 
+	border during song playback. The port that controls the Spectrum&#39;s beeper 
+	circuitry also controls the screen&#39;s border colour so you must choose a 
+	value for the border colour used in the compiled song.</p>
+	<p class="BodyText"><em>Output File:</em> The type of output to produce. The 
+	options are TAP file (with a BASIC loader), TAP file (code block only), 
+	Binary data file (this is the compiled binary player and data without any 
+	additional wrapping), Assembly listing (a partially-commented assembly 
+	listing suitable for incorporating into a larger project).</p>
+	<p class="BodyText"><em>Tone Generator: </em>Specifies the type of tone 
+	generator to be used by the compiled song.</p>
+	<p class="BodyText"><em>When the end of the song is reached:&nbsp; </em>
+	Specify whether, when the song finishes, the player routine exits or jumps 
+	back to the defined loop start point.</p>
+	<p class="BodyText"><em>Player Routine Options: </em>These options are 
+	specific to the selected tone generation routine. For the The Music Box 
+	engine, the options are to player continuously (ignoring keypresses), exit 
+	the player routine when a key is pressed, or exit at regular intervals after 
+	each note is played. Only the first two of these options are available for 
+	the Special FX engine.</p>
+	<p class="BodyText"><em>Interrupt Vector Table: </em>The Special FX, 
+	Savage and Plip Plop routines 
+	use an IM2 Interrupt Service Routine to play percussion and handle the 
+	playback timing. This requires the placement of a block of 257 contiguous 
+	0xFF bytes for the interrupt vector table in memory on a 256-byte boundary 
+	during the player routine&#39;s initialisation. This block can be shared by any 
+	other IM2 routines used in a game or utility. The options are:-</p>
+	<ul>
+		<li>
+		<p class="BodyText">0xFE00 - This is the default. The player routine 
+		will write out 257 0xFF bytes from address 65024 to 65280 during 
+		initialisation. This ensures the player will run correctly on all 
+		Spectrums. Other values from 0x8000 to 0xFD00 may be chosen if required, 
+		and are equally effective.</p>
+		</li>
+		<li>
+		<p class="BodyText">0x3900 - ROM. The 48K Spectrum ROM contains a handy 
+		block of 0xFF bytes at this location in the ROM which can be used as an 
+		interrupt vector table, thus saving 257 bytes of precious Spectrum RAM. 
+		However, the various 128K Spectrum models do not have this block present 
+		in the ROM in its entirety. With this option selected, the Special FX 
+		player will work on all 48K Spectrums, and on 128K Spectrums that do not 
+		have attached peripherals that place data onto the Z80 bus during the 
+		interrupt fetch. Devices that <em>may</em> cause problems on 128K 
+		Spectrums with this option selected include: Kempston joystick 
+		interface, AMX mouse interface, DivIDE+. In these circumstances, the 
+		player routine may crash the Spectrum.</p>
+		</li>
+	</ul>
+</div>	
+<!-- #EndEditable -->
+</div>
+</body>
+
+<!-- #EndTemplate -->
+
+</html>

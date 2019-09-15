@@ -1,0 +1,57 @@
+DESCRIPTION OF CONTENTS:
+
+=========================================
+The "Sources" Directory contains the following:
+
+icons		: Directory of 5 public domain icons.
+		> These were compiled into a single icon library (icons.ICL) by Attila Kovrig's IcoFX icon editor.
+
+midibeep2.rb	: A reworking of Gasman's original Ruby script - Converts the midi to Beeper values and then to integers. 
+		> Compiled using Ruby and the ocrasa.rb script (excellent script by the way!) to create midibeep2.exe
+
+TheGUI.au3	: Literally the GUI interface which overlays and uses the main midibeep2.exe command line tool.
+		> Written using AutoIT v3... Sorry, thats Windows ONLY!!!.. Compiled to create, surprise surprise, TheGui.exe.
+
+ZIPUP.AU3	: Literally the glue that zips up all the other tools together and executes them.  Designed to bind it all.
+		> Written and compiled again with AutoIT.  Will compile to form the finished Application.
+
+=========================================
+
+The "PreCompiled" Directory contains everything the TheGUI.exe needs to run midibeep2.exe EXCEPT the following:
+
+ZmakeBAS	- DOWNLOAD AT: ftp://ftp.ibiblio.org/pub/Linux/system/emulators/zx/zmakebas-1.2.tar.gz
+		> Yep..you'll have to compile it... but literally a single listing, so easy enough to compile on anything...		
+
+PSG2Mid		- DOWNLOAD AT: http://bulba.untergrund.net/psg2mid.rar
+		> An effective tool for converting PSG dumps into Midi... And YES, Bulba's AY_Emu player does convert ZX formats into PSG..
+
+SID2MIDI 	- DOWNLOAD AT: http://www.geocities.com/mschwendt/sid2midi.html
+		> An elusive tool... This version is restricted by the length of music allowed.. A GUI version apparently exists
+
+WAV2MIDI	- DOWNLOAD AT: http://www.gnmidi.com/gnfreeen.htm
+		> This tool converts WAV files into Midi files... Primative, but better than nothing...
+
+MidUnDUP.EXE	- DOWNLOAD AT: http://www.gnmidi.com
+		> This tool is for removing duplicate notes: Actually redundant, as the Ruby script does this anyway...
+
+bin2rem.exe	- DOWNLOAD AT: ftp://ftp.worldofspectrum.org/pub/sinclair/tools/pc/bin2rem.zip
+		> This tool is for converting binary code into an autorun BASIC header file, for instant run machine code.
+
+pasmo.exe	- DOWNLOAD AT: http://www.arrakis.es/~ninsesabe/pasmo/
+		> A very versitile Z80 assembler...
+
+The above are not included here, basically because they are somebody elses work, and not mine to distribute.
+
+With the above two tools added to the directory, the TheGUI.exe interface will have everything it needs to run the application.  The source file ZIPUP.AU3 basically binds all these tools together.  When run, it drops these files all into a temporary windows directory, then runs TheGUI.exe.  Upon closing, it then deletes the temp directory and cleans up after itself.
+
+=========================================
+
+WHAT YOU WILL NEED TO COMPILE:
+
+If you wish to modify this tool and recompile then, you'll need the following:
+
+1) Attila Kovrig's IcoFX icon editor for compiling the icons.
+2) Ruby and the ocrasa.rb script for compiling midi2beep2.rb.
+3) Emulator for testing purposes (I used EmuZWin for assembly compiling and Mark Woodmass's SpecEmu v2.9 for extracting and testing binary blobs.
+
+GOOD LUCK!

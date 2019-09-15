@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- #BeginTemplate "BeepolaHelp.dwt" -->
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<!-- #BeginEditable "doctitle" -->
+<title>Beepola Huby Engine</title>
+<!-- #EndEditable -->
+<link href="BeepolaMain.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+
+.style1 {
+	font-size: small;
+}
+</style>
+</head>
+
+<body>
+<div id="container" style="width: 100%; float: none; overflow: auto;">
+<div class="IndexDiv">
+<h1 class="Heading">Beepola Help</h1>
+<p class="Heading">Contents</p>
+	<p class="IndexItem"><a href="intro.html">Introduction</a></p>
+	<p class="IndexItem"><a href="keyboard.html">Keyboard commands</a></p>
+	<p class="IndexItem"><a href="tonegen.html">Beeper Engines</a></p>
+	<ul class="IndexSubItem">
+		<li><a href="engine-sfx.html">Special FX (Fuzz Click)</a></li>
+		<li><a href="engine-tmb.html">The Music Box</a></li>
+		<li><a href="engine-msd.html">The Music Studio</a></li>
+		<li><a href="engine-p1d.html">Phaser1</a><br />
+&nbsp; <span class="style1"><a href="p1-instruments.html">Interesting 
+		Instruments</a></span></li>
+		<li><a href="engine-svg.html">Savage</a></li>
+		<li><a href="engine-rmb.html">ROMBeep</a></li>
+		<li><a href="engine-plp.html">Plip Plop</a></li>
+		<li><a href="engine-hby.html">Huby</a></li>
+		<li><a href="engine-qcn.html">QChan</a></li>
+		<li><a href="engine-tri.html">Tritone</a></li>
+	</ul>
+	<p class="IndexItem"><a href="compiling.html">Compiling Songs</a></p>
+	<p class="IndexItem"><a href="ripping.html">Ripping Songs</a></p>
+	<p class="IndexItem"><a href="bbsong-fileformat.html">*.bbsong file format</a></p>
+	<p class="IndexItem"><a href="credits.html">Credits</a></p>
+	<p class="IndexItem">&nbsp;</p>
+
+</div>
+<!-- #BeginEditable "body" -->
+<div align="left" class="BodyDiv" style="left: 222px; top: 17px">
+<p class="Heading">Huby Beeper Engine</p>
+<p class="BodyText">This engine, developed by Shiru, has two tone channels with a 
+single percussive drum sound that can replace the note being played on channel 1. 
+The player routine has the advantage of being <strong>tiny</strong> (approx. 100 
+bytes depending on the options selected in Beepola). The music data format is also very compact (and Beepola contains 
+a smart compressor that looks for duplicate patterns of 8 notes across both 
+channels and ensures that any music 
+compiled with this engine is as compact as it is mathematically possible to be). 
+This makes it ideal for use in game music where space is often at a premium - 
+it's quite possible to produce a great sounding 2 channel piece of music in 200 
+bytes or less using Huby.</p>
+	<p class="BodyText">The engine itself sounds similar to the beeper engine 
+	used by Odin Computer Graphics in games such as
+	<a href="http://www.worldofspectrum.org/infoseekid.cgi?id=0002267">Heartland
+	</a>and <a href="http://www.worldofspectrum.org/infoseekid.cgi?id=0004177">
+	Robin of the Wood</a>.</p>
+	<p class="BodyText">There are two minor restrictions with this engine:-<br />
+	</p>
+	<p class="BodyText">1. All 
+	patterns must contain a minimum of 8 rows, and be a multiple of 8 rows long 
+	(8, 16, 24, 32, 40, etc. rows per pattern are all fine, up to a maximum of 
+	120 rows). If you use a pattern with, say, 18 rows, Beepola will ignore the 
+	two rows at the end of that pattern during playback and compilation (i.e. it 
+	treats all pattern lengths as modulo 8 internally).<br />
+	<br />
+	2. The only option for looping in Huby is to loop back to the very start of 
+	the song (or, optionally, exit the player at the end of the song). When 
+	compiling a song using Huby that has a loop point other than the first 
+	pattern, Beepola will generate a warning -- the song will still be compiled, 
+	but with the loop point set to the very start.</p>
+	<p class="BodyText">The lowest valid note value is C#1 and the highest is 
+	F-5. In common with many Spectrum beeper engines, as 8-bit counters are used 
+	there is some significant detuning in the top couple of octaves.</p>
+</div>	
+<!-- #EndEditable -->
+</div>
+</body>
+
+<!-- #EndTemplate -->
+
+</html>

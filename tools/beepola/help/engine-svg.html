@@ -1,0 +1,256 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- #BeginTemplate "BeepolaHelp.dwt" -->
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<!-- #BeginEditable "doctitle" -->
+<title>Beepola Savage Beeper Engine</title>
+<style type="text/css">
+
+
+
+
+
+.style2 {
+	border-style: solid;
+	border-width: 1px;
+}
+.style3 {
+	background-color: #C0C0C0;
+}
+</style>
+<!-- #EndEditable -->
+<link href="BeepolaMain.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+
+.style1 {
+	font-size: small;
+}
+</style>
+</head>
+
+<body>
+<div id="container" style="width: 100%; float: none; overflow: auto;">
+<div class="IndexDiv">
+<h1 class="Heading">Beepola Help</h1>
+<p class="Heading">Contents</p>
+	<p class="IndexItem"><a href="intro.html">Introduction</a></p>
+	<p class="IndexItem"><a href="keyboard.html">Keyboard commands</a></p>
+	<p class="IndexItem"><a href="tonegen.html">Beeper Engines</a></p>
+	<ul class="IndexSubItem">
+		<li><a href="engine-sfx.html">Special FX (Fuzz Click)</a></li>
+		<li><a href="engine-tmb.html">The Music Box</a></li>
+		<li><a href="engine-msd.html">The Music Studio</a></li>
+		<li><a href="engine-p1d.html">Phaser1</a><br />
+&nbsp; <span class="style1"><a href="p1-instruments.html">Interesting 
+		Instruments</a></span></li>
+		<li><a href="engine-svg.html">Savage</a></li>
+		<li><a href="engine-rmb.html">ROMBeep</a></li>
+		<li><a href="engine-plp.html">Plip Plop</a></li>
+		<li><a href="engine-hby.html">Huby</a></li>
+		<li><a href="engine-qcn.html">QChan</a></li>
+		<li><a href="engine-tri.html">Tritone</a></li>
+	</ul>
+	<p class="IndexItem"><a href="compiling.html">Compiling Songs</a></p>
+	<p class="IndexItem"><a href="ripping.html">Ripping Songs</a></p>
+	<p class="IndexItem"><a href="bbsong-fileformat.html">*.bbsong file format</a></p>
+	<p class="IndexItem"><a href="credits.html">Credits</a></p>
+	<p class="IndexItem">&nbsp;</p>
+
+</div>
+<!-- #BeginEditable "body" -->
+<div align="left" class="BodyDiv" style="left: 222px; top: 17px">
+<p class="Heading">Savage Beeper Engine</p>
+<p class="BodyText">This engine provides two tone channels and one drum channel 
+with a total of five percussion sounds. The tone channels have a variety of 
+effects available: Glissando, skew, XOR, ornamentation (arpeggios) and an FX 
+tone generator for generating additional sound effects when combined with the 
+other effects settings.</p>
+		<p class="BodyText">Special thanks are due to
+		<a href="http://speccy.info/Barmaley_m">Barmaley_M</a> for doing the 
+		painstaking work of reverse engineering this complex engine, and to
+		<a href="http://shiru.untergrund.net/1bit">Shiru</a> for translating his 
+		work to English so that I could make use of it in Beepola.</p>
+	<p class="BodyText"><strong>Effects<br />
+	</strong>All of the effects can be applied to both channel 1 and channel 2 
+	as required, however there are some interactions between the channels when 
+	effects are applied to both channels simultaneously, or more than one effect 
+	is applied to a channel at one time. Values for each effect are entered in 
+	hexadecimal (00 to FF) in the appropriate editor column, with a value of 00 
+	turning the effect off. The &quot;FX&quot; column is boolean and speficies whether the 
+	sound effect generator should be on or off for the selected row.</p>
+	<p class="BodyText"><strong>Glissando Effect</strong><br />
+	Glissando causes the pitch of a note to slide downwards at the specified 
+	rate. The main limitation of this effect is that it will automatically stop 
+	when a new note appears<em> on either channel.</em> If glissando and 
+	ornamentation are combined on a single row, the glissando effect is only 
+	applied to the first note of the arpeggio.</p>
+	<p class="BodyText">One interesting use of this effect is to create &quot;falling 
+	pitch&quot; drum sounds, using a high glissando value such as FF, together with a 
+	high pitch note in the top octave, perhaps also coupled with a skew effect. 
+	Because these effects appear in a tone channel, that can be used alongside 
+	other percussion effects in the drum channel.</p>
+	<p class="BodyText"><strong>Skew and Skew XOR Effects<br />
+	</strong>Skew affects the timbe of all subsequent notes in the channel by 
+	skewing the frequency of one of the two tone generators for the channel, 
+	to&nbsp;produce a more complex waveform. The XOR column has a value that is XORed 
+	with the skew parameter on every row, and this result becoming the new skew 
+	value for that row.</p>
+	<p class="BodyText">The skew and xor columns can be used freely in either 
+	channel without affecting the timbre of the notes in the other channel, and 
+	can be used with either glissandi or ornamentation effects without any 
+	adverse effects. </p>
+	<p class="BodyText">Skew and xor values of 00 produce a simple square-wave 
+	tone.</p>
+	<p class="BodyText"><strong>Ornament Effect<br />
+	</strong>The ornamentation column allows one of up to 31 user-defined 
+	arpeggios to be selected for the current, and all subsequent, notes in the 
+	channel. Ornaments are defined in the ornament editor as a sequence of 
+	offsets (in semitones) from the root note, and a single ornament may contain 
+	up to 255 offset values. However, the <em>total</em> number of offsets 
+	defined across all ornaments used in a song must also not exceed 255. So you 
+	could have 31 ornaments of 8 notes or fewer, but only 4 ornaments of 64 
+	notes in length, or 1 of 255 notes in length.</p>
+	<p class="BodyText">Ornament notes are played at duty cycle of 50Hz. An 
+	ornament value of 00 specifies &quot;ornament off&quot; or &quot;no ornament&quot;.</p>
+	<p class="BodyText">The use of ornaments on one channel has a fairly 
+	profound effect on the sound of notes in the other channel, creating a 50Hz 
+	buzz on the second channel if no ornament. Different ornaments can be used 
+	on each channel simultaneously, which can sometimes mask the 50Hz buzz.</p>
+	<p class="BodyText">Ornaments and glissandi don&#39;t really work together, 
+	since the ornament is disabled as soon as the second note of the ornament is 
+	played (regardless of whether the ornament is on the same channel as the 
+	glissando or not).</p>
+		<p class="BodyText"><strong>FX Column<br />
+		</strong>The FX column is boolean - it can be either on or off for a 
+		given row. Switching the FX generator on has a dramatic effect for the 
+		note on which it occurs, which can be used along with the other effects 
+		columns to generate a range of synthesised drum effects, and various 
+		siren/whistle/phaser-type effects. The FX generator behaves differently for each 
+		of the 2 channels, and the channel with FX set to &quot;On&quot; can have its sound modified 
+		considerably by whatever sound is being generated on the other channel.</p>
+	<p class="BodyText">&nbsp;Some 
+		examples of the many effects that can be generated are:-<br />
+		<table style="width: 100%" class="style2">
+			<tr>
+			    <th class="style3"><strong>Description</strong></th>
+				<th class="style3"><strong>Chan 1</strong></th>
+				<th class="style3"><strong>Glis</strong></th>
+				<th class="style3"><strong>Skew</strong></th>
+				<th class="style3"><strong>Xor</strong></th>
+				<th class="style3"><strong>Orn</strong></th>
+				<th class="style3"><strong>FX</strong></th>
+				<th class="style3"><strong>Chan 2</strong></th>
+				<th class="style3"><strong>Glis</strong></th>
+				<th class="style3"><strong>Skew</strong></th>
+				<th class="style3"><strong>Xor</strong></th>
+				<th class="style3"><strong>Orn</strong></th>
+				<th class="style3"><strong>FX</strong></th>
+			</tr>
+			<tr>
+				<td>Bass Drum</td>
+				<td>F-2</td>
+				<td>09</td>
+				<td>--</td>
+				<td>--</td>
+				<td>--</td>
+				<td>On</td>
+				<td>---</td>
+				<td>--</td>
+				<td>--</td>
+				<td>--</td>
+				<td>--</td>
+				<td>--</td>
+			</tr>
+			<tr>
+				<td>Car Accelerating</td>
+				<td>C-1</td>
+				<td>FF</td>
+				<td>--</td>
+				<td>--</td>
+				<td>--</td>
+				<td>On</td>
+				<td>---</td>
+				<td>--</td>
+				<td>--</td>
+				<td>--</td>
+				<td>--</td>
+				<td>--</td>
+			</tr>
+			<tr>
+				<td>Siren</td>
+				<td>---</td>
+				<td>--</td>
+				<td>--</td>
+				<td>--</td>
+				<td>--</td>
+				<td>--</td>
+				<td>C-3</td>
+				<td>--</td>
+				<td>--</td>
+				<td>--</td>
+				<td>--</td>
+				<td>On</td>
+			</tr>
+			<tr>
+				<td>Creaking Door</td>
+				<td>---</td>
+				<td>--</td>
+				<td>--</td>
+				<td>--</td>
+				<td>--</td>
+				<td>--</td>
+				<td>C-2</td>
+				<td>FF</td>
+				<td>--</td>
+				<td>--</td>
+				<td>--</td>
+				<td>On</td>
+			</tr>
+			<tr>
+				<td>Long Wave Radio</td>
+				<td>C-5</td>
+				<td>--</td>
+				<td>--</td>
+				<td>--</td>
+				<td>--</td>
+				<td>--</td>
+				<td>G-5</td>
+				<td>FF</td>
+				<td>--</td>
+				<td>--</td>
+				<td>--</td>
+				<td>On</td>
+			</tr>
+		</table>
+		</p>
+	<p class="BodyText">You are encouraged to experiment!
+		</p>
+	<p class="BodyText"><strong>General<br />
+	</strong>A song may contain up to 127 unique patterns, and each 
+	pattern may contain up to 126 notes per channel. The tempo and length of 
+	each pattern may be set individually.</p>
+	<p class="BodyText">The lowest valid note value is C-1 and the highest is 
+	B-5. <em>However</em> the bottom three notes of octave 1 are significantly 
+	detuned (more than a semitone each) - this is how the frequency table from 
+	the original engine was laid out, and it has been decided to preserve the 
+	sound of the original engine fully by keeping these 
+	values. No other significant detuning appears to be present.</p>
+		<p class="BodyText"><strong>Useful POKEs/Addresses</strong><br />
+		58 bytes into the player routine is a LD HL,nn instruction 
+		which points to the start of the song data. Therefore, to select 
+		a different song to play:-</p>
+		<p class="BodyText"><font face="Courier">10 LET PlayerAddr = 60000<br />
+		20 LET SongAddr = 62000<br />
+		30 POKE PlayerAddr+59,SongAddr - 256 * INT(SongAddr / 256)<br />
+		40 POKE PlayerAddr+60,INT(SongAddr / 256)</font></p>
+</div>	
+<!-- #EndEditable -->
+</div>
+</body>
+
+<!-- #EndTemplate -->
+
+</html>

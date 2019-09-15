@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- #BeginTemplate "BeepolaHelp.dwt" -->
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<!-- #BeginEditable "doctitle" -->
+<title>Beepola Phaser1 Beeper Engine</title>
+<!-- #EndEditable -->
+<link href="BeepolaMain.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+
+.style1 {
+	font-size: small;
+}
+</style>
+</head>
+
+<body>
+<div id="container" style="width: 100%; float: none; overflow: auto;">
+<div class="IndexDiv">
+<h1 class="Heading">Beepola Help</h1>
+<p class="Heading">Contents</p>
+	<p class="IndexItem"><a href="intro.html">Introduction</a></p>
+	<p class="IndexItem"><a href="keyboard.html">Keyboard commands</a></p>
+	<p class="IndexItem"><a href="tonegen.html">Beeper Engines</a></p>
+	<ul class="IndexSubItem">
+		<li><a href="engine-sfx.html">Special FX (Fuzz Click)</a></li>
+		<li><a href="engine-tmb.html">The Music Box</a></li>
+		<li><a href="engine-msd.html">The Music Studio</a></li>
+		<li><a href="engine-p1d.html">Phaser1</a><br />
+&nbsp; <span class="style1"><a href="p1-instruments.html">Interesting 
+		Instruments</a></span></li>
+		<li><a href="engine-svg.html">Savage</a></li>
+		<li><a href="engine-rmb.html">ROMBeep</a></li>
+		<li><a href="engine-plp.html">Plip Plop</a></li>
+		<li><a href="engine-hby.html">Huby</a></li>
+		<li><a href="engine-qcn.html">QChan</a></li>
+		<li><a href="engine-tri.html">Tritone</a></li>
+	</ul>
+	<p class="IndexItem"><a href="compiling.html">Compiling Songs</a></p>
+	<p class="IndexItem"><a href="ripping.html">Ripping Songs</a></p>
+	<p class="IndexItem"><a href="bbsong-fileformat.html">*.bbsong file format</a></p>
+	<p class="IndexItem"><a href="credits.html">Credits</a></p>
+	<p class="IndexItem">&nbsp;</p>
+
+</div>
+<!-- #BeginEditable "body" -->
+<div align="left" class="BodyDiv" style="left: 222px; top: 17px">
+<p class="Heading">Phaser1 Beeper Engine</p>
+<p class="BodyText">This engine provides two melody channels and one drum 
+channel. Channel 1 is always a pure square-wave tone, while channel 2 is a 
+phasing synth with up to 100 instruments. Both channels have a range of 5 full 
+octaves with no noticeable detuning.</p>
+	<p class="BodyText"><strong>Phasing Synth (mostly taken from Phaser1&#39;s 
+	readme.txt by Shiru)<br />
+	</strong>The phasing synth consists of two square tone generators, both change 
+	output state to&nbsp;produce a more complex waveform. The synth is controlled 
+	by three parameters, all of which are for the second generator only. <em>
+	Multiple</em> defines frequency of the second generator, relative to the 
+	first (0=the same, 1=double the first, etc). <em>Detune</em> introduces 
+	a difference between the generators, producing a phasing effect. Phase allows 
+	to set phase on start of the generator, which only occurs if phase reset is 
+	used (by entering any value into the <em>Phase</em> column in the tracker so 
+	that it shows &quot;Reset&quot;). Don&#39;t forget to reset the phase with every change of 
+	the instrument, otherwise you&#39;ll get a combination of settings of the 
+	previous and new instruments, which may produce an unwanted effect.</p>
+	<p class="BodyText">Although the engine does not support volume, you can 
+	imitate PWM volumes on the second tone channel, using <em>Multiple=0</em>,
+	<em>Detune=0</em>, <em>Phase&lt;128</em>. Lower values for <em>Phase</em> make the 
+	volume lower, and also affects to the timbre.</p>
+	<p class="BodyText">A song may contain up to 127 unique patterns, and each 
+	pattern may contain up to 126 notes per channel. The tempo and length of 
+	each pattern may be set individually.</p>
+	<p class="BodyText">The Phaser1 engine has a limited range of available 
+	pattern tempo settings. 16 is the fastest tempo supported (values of 17-20 
+	are identical to 16) and 1 is the slowest. At the very fastest tempo setting 
+	(16) the drum sounds obscure any notes present (in either channel) on the 
+	same row.</p>
+	<p class="BodyText">The lowest valid note value is C-1 and the highest is 
+	B-5.</p>
+	<p class="BodyText"><strong>Two Versions of Phaser1<br />
+	</strong>Beepola contains two slightly different versions of the Phaser1 
+	engine. The first contains 8 digitally sampled drums, which occupy an 
+	additional 1KB of Spectrum RAM. The second version contains synthesised 
+	drums and therefore produces a much smaller player (~810 bytes, compared to 
+	~1750 for the digital drum version). The two tone channels are identical 
+	between these two versions - only the drums differ.</p>
+		<p class="BodyText"><strong>Useful POKEs/Addresses</strong><br />
+		The first instruction in the player routine is a LD HL,nn instruction 
+		which points to the start of the song data. Therefore, to select 
+		a different song to play:-</p>
+		<p class="BodyText"><font face="Courier">10 LET PlayerAddr = 60000<br />
+		20 LET SongAddr = 62000<br />
+		30 POKE PlayerAddr+1,SongAddr - 256 * INT(SongAddr / 256)<br />
+		40 POKE PlayerAddr+2,INT(SongAddr / 256)</font></p>
+</div>	
+<!-- #EndEditable -->
+</div>
+</body>
+
+<!-- #EndTemplate -->
+
+</html>

@@ -1,0 +1,41 @@
+﻿.Heading
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: large;
+}
+
+.IndexItem {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: medium;
+	margin: 0px;
+	list-style: circle;
+}
+
+.IndexSubItem {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: medium;
+	list-style: disc;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding-left: 16px;
+}
+
+.IndexDiv {
+	width: 200px;
+	float: left;
+	padding-left: 8px;
+	border: thin black solid;
+}
+
+.BodyDiv {
+	float: left;
+	position: absolute;
+	left: 220px;
+	min-width: 200px;
+	overflow: auto;
+}
+
+.BodyText {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: medium;
+}

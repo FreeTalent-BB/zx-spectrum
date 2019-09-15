@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- #BeginTemplate "BeepolaHelp.dwt" -->
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<!-- #BeginEditable "doctitle" -->
+<title>Beepola Plip Plop Engine</title>
+<!-- #EndEditable -->
+<link href="BeepolaMain.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+
+.style1 {
+	font-size: small;
+}
+</style>
+</head>
+
+<body>
+<div id="container" style="width: 100%; float: none; overflow: auto;">
+<div class="IndexDiv">
+<h1 class="Heading">Beepola Help</h1>
+<p class="Heading">Contents</p>
+	<p class="IndexItem"><a href="intro.html">Introduction</a></p>
+	<p class="IndexItem"><a href="keyboard.html">Keyboard commands</a></p>
+	<p class="IndexItem"><a href="tonegen.html">Beeper Engines</a></p>
+	<ul class="IndexSubItem">
+		<li><a href="engine-sfx.html">Special FX (Fuzz Click)</a></li>
+		<li><a href="engine-tmb.html">The Music Box</a></li>
+		<li><a href="engine-msd.html">The Music Studio</a></li>
+		<li><a href="engine-p1d.html">Phaser1</a><br />
+&nbsp; <span class="style1"><a href="p1-instruments.html">Interesting 
+		Instruments</a></span></li>
+		<li><a href="engine-svg.html">Savage</a></li>
+		<li><a href="engine-rmb.html">ROMBeep</a></li>
+		<li><a href="engine-plp.html">Plip Plop</a></li>
+		<li><a href="engine-hby.html">Huby</a></li>
+		<li><a href="engine-qcn.html">QChan</a></li>
+		<li><a href="engine-tri.html">Tritone</a></li>
+	</ul>
+	<p class="IndexItem"><a href="compiling.html">Compiling Songs</a></p>
+	<p class="IndexItem"><a href="ripping.html">Ripping Songs</a></p>
+	<p class="IndexItem"><a href="bbsong-fileformat.html">*.bbsong file format</a></p>
+	<p class="IndexItem"><a href="credits.html">Credits</a></p>
+	<p class="IndexItem">&nbsp;</p>
+
+</div>
+<!-- #BeginEditable "body" -->
+<div align="left" class="BodyDiv" style="left: 222px; top: 17px">
+<p class="Heading">Plip Plop Beeper Engine</p>
+<p class="BodyText">This engine provides a single sawtooth wave melody channel 
+(channel 1), with support for flexible pitch-bending up or down at a 
+customisable rate, and a single percussion channel.</p>
+	<p class="BodyText">For many fans of the Spectrum, this beeper engine was 
+	their first taste of a clever beeper routine, providing something other 
+	than the simple square-wave monophonic tones of the ROM beeper. Originally written by 
+	Jonathan "Joffa" Smith, this engine was used to stunning effect in
+	<a href="http://www.worldofspectrum.org/infoseekid.cgi?id=0003722">Konami 
+	Pong</a> by Martin Galway, and subsequently tweaked by fellow Ocean 
+	programmer <a href="http://www.pauliehughes.com/">Paulie 
+	Hughes</a> (who kindly donated the source code for use in Beepola). This 
+	engine can also be heard in
+	<a href="http://www.worldofspectrum.org/infoseekid.cgi?id=0000996">Cobra</a>,
+	<a href="http://www.worldofspectrum.org/infoseekid.cgi?id=0004090">Renegade 
+	3</a>, <a href="http://www.worldofspectrum.org/infoseekid.cgi?id=0000307">
+	Athena</a> and many other Ocean and Imagine games.</p>
+	<p class="BodyText">&nbsp;The player code is fairly sophisticated and has a 
+	number of complex scripting options designed to save space in the music 
+	data: FOR...NEXT loops, SUBroutines, GOTOs, and a TRANSPOSE command to alter 
+	the key of a section of music. Beepola's compiler only currently makes use 
+	of the simplest form of SUBroutines (with each pattern being represented in 
+	the music data as a subroutine). However, the complex commands have been 
+	left in the player code allowing beepola's asm output for this engine to be 
+	tweaked manually to reduce the size of tune data if necessary.</p>
+	<p class="BodyText">Pitch bend values can be entered in column two (titled 
+	"PBend"). The pitch with slide from the currently playing note to the note 
+	specified on the same row as the PBend value. Values in the range 1-99 bend 
+	downwards (1 being the slowest, with higher values faster). Values in the 
+	range 101-199 bend upwards (101 being the slowest, with higher values 
+	sliding faster).</p>
+	<p class="BodyText">The are some peculiarities with the percussion for this 
+	engine, brought about by the fact that the data format does not fit cleanly 
+	into Beepola's pattern-based model. In Beepola, it works like this:-</p>
+	<ul>
+		<li>
+		<p class="BodyText">A pattern can contain no percussion at all and this 
+		will play fine, regardless of the pattern length.</p>
+		</li>
+		<li>
+		<p class="BodyText">If a pattern contains percussion, there can be no 
+		more than 255 frames (approx. 5 seconds) of melody-only or silence at 
+		the start of the pattern before the first drum. Otherwise "ghost" drum 
+		sounds will be heard before the real programmed drums begin.</p>
+		</li>
+		<li>
+		<p class="BodyText">There can be no more than 31 frames (a shade over 
+		half a second) of percussive silence between drums effects, otherwise 
+		"ghost" drum sounds will be inserted as padding.</p>
+		</li>
+	</ul>
+	<p class="BodyText">In practice, any and all issues caused by the above can 
+	be fully worked around by splitting patterns where necessary to remain 
+	within the limits specified above.</p>
+	<p class="BodyText">A song may contain up to 127 unique patterns, and each 
+	pattern may contain up to 126 rows. The tempo and length of 
+	each pattern may be set individually.</p>
+	<p class="BodyText">The lowest valid note value is D#1 and the highest is 
+	D-5.</p>
+</div>	
+<!-- #EndEditable -->
+</div>
+</body>
+
+<!-- #EndTemplate -->
+
+</html>

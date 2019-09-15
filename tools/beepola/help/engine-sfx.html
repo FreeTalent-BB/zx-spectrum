@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- #BeginTemplate "BeepolaHelp.dwt" -->
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<!-- #BeginEditable "doctitle" -->
+<title>Beepola Special FX Beeper Engine</title>
+<!-- #EndEditable -->
+<link href="BeepolaMain.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+
+.style1 {
+	font-size: small;
+}
+</style>
+</head>
+
+<body>
+<div id="container" style="width: 100%; float: none; overflow: auto;">
+<div class="IndexDiv">
+<h1 class="Heading">Beepola Help</h1>
+<p class="Heading">Contents</p>
+	<p class="IndexItem"><a href="intro.html">Introduction</a></p>
+	<p class="IndexItem"><a href="keyboard.html">Keyboard commands</a></p>
+	<p class="IndexItem"><a href="tonegen.html">Beeper Engines</a></p>
+	<ul class="IndexSubItem">
+		<li><a href="engine-sfx.html">Special FX (Fuzz Click)</a></li>
+		<li><a href="engine-tmb.html">The Music Box</a></li>
+		<li><a href="engine-msd.html">The Music Studio</a></li>
+		<li><a href="engine-p1d.html">Phaser1</a><br />
+&nbsp; <span class="style1"><a href="p1-instruments.html">Interesting 
+		Instruments</a></span></li>
+		<li><a href="engine-svg.html">Savage</a></li>
+		<li><a href="engine-rmb.html">ROMBeep</a></li>
+		<li><a href="engine-plp.html">Plip Plop</a></li>
+		<li><a href="engine-hby.html">Huby</a></li>
+		<li><a href="engine-qcn.html">QChan</a></li>
+		<li><a href="engine-tri.html">Tritone</a></li>
+	</ul>
+	<p class="IndexItem"><a href="compiling.html">Compiling Songs</a></p>
+	<p class="IndexItem"><a href="ripping.html">Ripping Songs</a></p>
+	<p class="IndexItem"><a href="bbsong-fileformat.html">*.bbsong file format</a></p>
+	<p class="IndexItem"><a href="credits.html">Credits</a></p>
+	<p class="IndexItem">&nbsp;</p>
+
+</div>
+<!-- #BeginEditable "body" -->
+<div align="left" class="BodyDiv">
+<p class="Heading">Special FX Beeper Engine</p>
+<p class="BodyText">This engine provides two melody channels, each with 
+individual sustain data, plus a third percussion channel with four available 
+drum sounds.</p>
+	<p class="BodyText">Notes entered in channel 2 are rendered slightly louder 
+	than those entered in channel 1.</p>
+	<p class="BodyText">The sustain setting for a given channel affects the rate 
+	of decay for all notes on that channel until a different sustain setting is 
+	encountered. A sustain setting of &#39;1&#39; causes notes to decay to near-silence 
+	very quickly, while higher sustain values cause the notes to ring for 
+	longer. With very high sustain values, notes effectively remain at a 
+	constant volume until the next note in sequence is played.</p>
+	<p class="BodyText">Independent sustain values can be set for each channel, 
+	and can appear as frequently as required within a pattern. The sustain 
+	values from the previous pattern are carried over into the next pattern 
+	during playback. Each sustain value increases the size of the final pattern 
+	data by 2 bytes.</p>
+	<p class="BodyText">A feature of the Special FX engine is that melody and 
+	percussion patterns are stored separately. This means that a repeating drum 
+	pattern is only stored once in the compiled song, even when it is used 
+	alongside different melody data.</p>
+	<p class="BodyText">The song compiler is smart enough to automatically 
+	recognise duplicate melody and drum patterns and only includes a single copy 
+	of any duplicated pattern in the final output.</p>
+	<p class="BodyText">A song may contain up to 127 unique patterns, and each 
+	pattern may contain up to 126 notes per channel. The tempo and length of 
+	each pattern may be set individually</p>
+	<p class="BodyText">The lowest valid note value is F#1 and the highest is 
+	A-5.</p>
+		<p class="BodyText"><strong>Useful POKEs/Addresses</strong><br />
+		24 bytes into the player routine, there is a LD HL,nn instruction 
+		which points to the start of the song data. Therefore, to select 
+		a different song to play:-</p>
+		<p class="BodyText"><font face="Courier">10 LET PlayerAddr = 60000<br />
+		20 LET SongAddr = 61000<br />
+		30 POKE PlayerAddr + 25,SongAddr - 256 * INT(SongAddr /2 56)<br />
+		40 POKE PlayerAddr + 26,INT(SongAddr / 256)</font></p>
+</div>
+<!-- #EndEditable -->
+</div>
+</body>
+
+<!-- #EndTemplate -->
+
+</html>

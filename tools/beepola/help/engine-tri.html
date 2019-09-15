@@ -1,0 +1,209 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- #BeginTemplate "BeepolaHelp.dwt" -->
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<!-- #BeginEditable "doctitle" -->
+<title>Beepola Tritone Engine</title>
+<style type="text/css">
+
+.auto-style1 {
+	text-align: center;
+}
+.auto-style2 {
+	border-style: solid;
+	border-width: 1px;
+}
+.auto-style3 {
+	text-align: center;
+	border-left-style: solid;
+	border-left-width: 1px;
+}
+.auto-style4 {
+	border-width: 0px;
+}
+.auto-style6 {
+	text-align: center;
+	border-right-style: solid;
+	border-right-width: 1px;
+}
+.auto-style7 {
+	text-align: center;
+	border-left-style: solid;
+	border-left-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+}
+.auto-style8 {
+	text-align: center;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+}
+.auto-style9 {
+	text-align: center;
+	border-right-style: solid;
+	border-right-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+}
+.auto-style11 {
+	text-align: center;
+	border-left-style: solid;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-top-width: 1px;
+}
+.auto-style12 {
+	text-align: center;
+	border-top-style: solid;
+	border-top-width: 1px;
+}
+.auto-style13 {
+	text-align: center;
+	border-right-style: solid;
+	border-right-width: 1px;
+	border-top-style: solid;
+	border-top-width: 1px;
+}
+</style>
+<!-- #EndEditable -->
+<link href="BeepolaMain.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+
+.style1 {
+	font-size: small;
+}
+</style>
+</head>
+
+<body>
+<div id="container" style="width: 100%; float: none; overflow: auto;">
+<div class="IndexDiv">
+<h1 class="Heading">Beepola Help</h1>
+<p class="Heading">Contents</p>
+	<p class="IndexItem"><a href="intro.html">Introduction</a></p>
+	<p class="IndexItem"><a href="keyboard.html">Keyboard commands</a></p>
+	<p class="IndexItem"><a href="tonegen.html">Beeper Engines</a></p>
+	<ul class="IndexSubItem">
+		<li><a href="engine-sfx.html">Special FX (Fuzz Click)</a></li>
+		<li><a href="engine-tmb.html">The Music Box</a></li>
+		<li><a href="engine-msd.html">The Music Studio</a></li>
+		<li><a href="engine-p1d.html">Phaser1</a><br />
+&nbsp; <span class="style1"><a href="p1-instruments.html">Interesting 
+		Instruments</a></span></li>
+		<li><a href="engine-svg.html">Savage</a></li>
+		<li><a href="engine-rmb.html">ROMBeep</a></li>
+		<li><a href="engine-plp.html">Plip Plop</a></li>
+		<li><a href="engine-hby.html">Huby</a></li>
+		<li><a href="engine-qcn.html">QChan</a></li>
+		<li><a href="engine-tri.html">Tritone</a></li>
+	</ul>
+	<p class="IndexItem"><a href="compiling.html">Compiling Songs</a></p>
+	<p class="IndexItem"><a href="ripping.html">Ripping Songs</a></p>
+	<p class="IndexItem"><a href="bbsong-fileformat.html">*.bbsong file format</a></p>
+	<p class="IndexItem"><a href="credits.html">Credits</a></p>
+	<p class="IndexItem">&nbsp;</p>
+
+</div>
+<!-- #BeginEditable "body" -->
+<div align="left" class="BodyDiv" style="left: 222px; top: 17px">
+<p class="Heading">Tritone Beeper Engine</p>
+<p class="BodyText">This engine, developed by Shiru, has three tone channels with 
+a further channel of interrupting drums. Eight levels of skew (sound loop duty 
+cycle) values are available on a per-note basis. Individual note detuning is 
+also available which can be used to generate a variety of effects.</p>
+	<p class="BodyText">There are two slightly different versions of this engine 
+	availabel in Beepola. The standard Tritone engine provides different volume 
+	levels for each channel (channel 1 is the quietest channel 3 is 
+	approximately twice the volume of channel 1, and channel 2 is between them). 
+	There is also a "Tritone (equal volumes)" variant which provides the same 
+	level of volumes on all three channels.</p>
+	<p class="BodyText">At the start of a new pattern, unless otherwise 
+	specified, the skew value for each channel will effectively be 1 (no skew - 
+	providing a clean tone). If the skew value is changed for a particular 
+	channel, that skew value will remain in effect for the remainder of the 
+	pattern until it is changed. This saves time when editing patterns as, for a 
+	group of notes that are to use the same skew, you need only enter it once 
+	against the first note rather than against every note in the run of notes.</p>
+	<p class="BodyText">The lowest standard note value is C-1 and the highest is 
+	F-6.&nbsp; 12bit frequency counters are used. Using the note detune column, an octave 0 can be used but is 
+	quite difficult to hear due to the low frequency, and has some slight tuning 
+	issues:-<br />
+	<table style="width: 400px" class="auto-style4">
+		<tr>
+			<th style="height: 22px" class="auto-style2">Note</th>
+			<th style="height: 22px" class="auto-style2">Detune value</th>
+			<th style="height: 22px" class="auto-style2">Approximates to</th>
+		</tr>
+		<tr>
+			<td class="auto-style11">C-1</td>
+			<td class="auto-style12">-47</td>
+			<td class="auto-style13">C-0</td>
+		</tr>
+		<tr>
+			<td class="auto-style3">C#1</td>
+			<td class="auto-style1">-50</td>
+			<td class="auto-style6">C#0</td>
+		</tr>
+		<tr>
+			<td class="auto-style3">D-1</td>
+			<td class="auto-style1">-53</td>
+			<td class="auto-style6">D-0</td>
+		</tr>
+		<tr>
+			<td class="auto-style3">D#1</td>
+			<td class="auto-style1">-56</td>
+			<td class="auto-style6">D#0</td>
+		</tr>
+		<tr>
+			<td class="auto-style3">E-1</td>
+			<td class="auto-style1">-59</td>
+			<td class="auto-style6">E-0</td>
+		</tr>
+		<tr>
+			<td class="auto-style3">F-1</td>
+			<td class="auto-style1">-63</td>
+			<td class="auto-style6">F-0</td>
+		</tr>
+		<tr>
+			<td class="auto-style3">F#1</td>
+			<td class="auto-style1">-66</td>
+			<td class="auto-style6">F#0</td>
+		</tr>
+		<tr>
+			<td class="auto-style3">G-1</td>
+			<td class="auto-style1">-70</td>
+			<td class="auto-style6">G-0</td>
+		</tr>
+		<tr>
+			<td class="auto-style3">G#1</td>
+			<td class="auto-style1">-74</td>
+			<td class="auto-style6">G#0</td>
+		</tr>
+		<tr>
+			<td class="auto-style3">A-1</td>
+			<td class="auto-style1">-79</td>
+			<td class="auto-style6">A-0</td>
+		</tr>
+		<tr>
+			<td class="auto-style3">A#1</td>
+			<td class="auto-style1">-83</td>
+			<td class="auto-style6">A#0</td>
+		</tr>
+		<tr>
+			<td class="auto-style7">B-1</td>
+			<td class="auto-style8">-88</td>
+			<td class="auto-style9">B-0</td>
+		</tr>
+	</table>
+&nbsp;</p>
+</div>	
+<!-- #EndEditable -->
+</div>
+</body>
+
+<!-- #EndTemplate -->
+
+</html>

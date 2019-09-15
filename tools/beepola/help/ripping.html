@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- #BeginTemplate "BeepolaHelp.dwt" -->
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<!-- #BeginEditable "doctitle" -->
+<title>Ripping Songs in Beepola</title>
+<!-- #EndEditable -->
+<link href="BeepolaMain.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+
+.style1 {
+	font-size: small;
+}
+</style>
+</head>
+
+<body>
+<div id="container" style="width: 100%; float: none; overflow: auto;">
+<div class="IndexDiv">
+<h1 class="Heading">Beepola Help</h1>
+<p class="Heading">Contents</p>
+	<p class="IndexItem"><a href="intro.html">Introduction</a></p>
+	<p class="IndexItem"><a href="keyboard.html">Keyboard commands</a></p>
+	<p class="IndexItem"><a href="tonegen.html">Beeper Engines</a></p>
+	<ul class="IndexSubItem">
+		<li><a href="engine-sfx.html">Special FX (Fuzz Click)</a></li>
+		<li><a href="engine-tmb.html">The Music Box</a></li>
+		<li><a href="engine-msd.html">The Music Studio</a></li>
+		<li><a href="engine-p1d.html">Phaser1</a><br />
+&nbsp; <span class="style1"><a href="p1-instruments.html">Interesting 
+		Instruments</a></span></li>
+		<li><a href="engine-svg.html">Savage</a></li>
+		<li><a href="engine-rmb.html">ROMBeep</a></li>
+		<li><a href="engine-plp.html">Plip Plop</a></li>
+		<li><a href="engine-hby.html">Huby</a></li>
+		<li><a href="engine-qcn.html">QChan</a></li>
+		<li><a href="engine-tri.html">Tritone</a></li>
+	</ul>
+	<p class="IndexItem"><a href="compiling.html">Compiling Songs</a></p>
+	<p class="IndexItem"><a href="ripping.html">Ripping Songs</a></p>
+	<p class="IndexItem"><a href="bbsong-fileformat.html">*.bbsong file format</a></p>
+	<p class="IndexItem"><a href="credits.html">Credits</a></p>
+	<p class="IndexItem">&nbsp;</p>
+
+</div>
+<!-- #BeginEditable "body" -->
+<div align="left" class="BodyDiv">
+	<p class="Heading">Ripping Songs</p>
+	<p class="BodyText">The Song Ripper is available in the menus under File-&gt;Import-&gt;Spectrum Song Ripper...</p>
+	<p class="BodyText">This feature is capable of ripping a variety of song 
+	data from Spectrum emulator files (TAP or Z80) directly into Beepola for 
+	subsequent playing or editing.</p>
+	<p class="BodyText">The ripper will currently automatically search for the following types 
+	of data:-</p>
+	<ul>
+		<li>
+		<p class="BodyText">Original Music Box compositions (made using Wham! 
+		The Music Box editor, or the Mark Time Music Box editor)</p>
+		</li>
+		<li>
+		<p class="BodyText">Phaser1 compositions made using Shiru&#39;s original 
+		(non-pattern based) Spectrum version of Phaser1</p>
+		</li>
+		<li>
+		<p class="BodyText">Phaser1 compositions compiled with Beepola.</p>
+		</li>
+		<li>
+		<p class="BodyText">Music Box compositions compiled with Beepola.</p>
+		</li>
+		<li>
+		<p class="BodyText">Special FX (Fuzz Click) compositions compiled with 
+		Beepola.</p>
+		</li>
+		<li>
+		<p class="BodyText">Huby compositions compiled either with Beepola or 
+		Shiru's original xm2huby utility (due to note table differences, xm2huby 
+		songs may have some suspect tuning when imported into Beepola).</p>
+		</li>
+		<li>
+		<p class="BodyText">Tritone and QChan songs from any source.</p>
+		</li>
+	</ul>
+	<p class="BodyText"><strong>Tips for Ripping songs<br />
+	</strong>The TAP file reader in Beepola is very limited and will ignore 
+	headerless data blocks. Also, games that make use of data compression or 
+	that use one player routine to play multiple songs during the course of a 
+	game may be foiled by the ripper.</p>
+	<p class="BodyText">Therefore, to get the best results, it is highly 
+	recommended that you load the game into an emulator and take a snapshot in *.Z80 
+	format <em>while the target tune is playing</em> and select this file in the 
+	ripper rather than the original game file. This gives the ripper the best 
+	possible chance of locating the required song data and importing it into 
+	Beepola format.</p>
+	<p class="BodyText"><strong>Manual Ripping<br />
+	</strong>If the automated ripper is unable to locate the required song data 
+	(for example, if a player routine has been heavily modified from its 
+	standard form), a manual process can be used.</p>
+	<p class="BodyText">To manually rip a song you have to tell Beepola the 
+	location in the Spectrum memory map of the song data, and the format that 
+	the data is in (in other words, which beeper engine the data is for). The 
+	song data location can usually be found relatively quickly by using a 
+	debugger in an emulator. Break into the executing code as soon as the target 
+	song has begun playing to find the rough location of the player code in 
+	memory and work backward from there -- for most player routines, the HL 
+	register pair is set up to point to the start of the music data either just 
+	before the main player routine is CALLed, or near the start of the player 
+	routine itself.</p>
+</div>	
+<!-- #EndEditable -->
+</div>
+</body>
+
+<!-- #EndTemplate -->
+
+</html>
